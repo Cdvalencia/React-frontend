@@ -1,0 +1,23 @@
+.posts{
+  header{
+    position: relative;
+    z-index: 10;
+    margin-bottom: 60px;
+    padding: 0 2%;
+    h1{
+      margin: 20px 0;
+      font-size: 1.4em
+    }
+    &>section{
+      @include flex;
+      justify-content: flex-start;
+      label{
+        margin-right: 10px
+      }
+      input{
+        height: 28px;
+        width: 300px;
+      }
+    }
+  }
+}
