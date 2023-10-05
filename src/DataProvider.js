@@ -14,6 +14,7 @@ export function DataProvider(props) {
     const [loading, setLoading] = useState(false);
 
     const function1 = () => {
+      setData("");
       return 1
     }
 

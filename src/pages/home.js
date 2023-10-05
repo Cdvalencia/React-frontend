@@ -31,13 +31,13 @@ const Home = (props) => {
       }   
       http.post(`${API_URL}/books`,book).then((result) => {
         console.log(result); 
-        Swal.fire('Se han creado 40 Libros!', '', 'success');
       }).catch((err) =>
-        console.log(err)
+      console.log(err)
       ).finally(() =>
-        console.log()
+      console.log()
       )
     }
+    Swal.fire('Se han creado 40 Libros!', '', 'success');
     
     // ('Libro 40', 'Autor 40', 'Género 3', '2023-01-40', 'ISBN-40', 'Editorial 3', 300, 'Sinopsis 40', true);
   }

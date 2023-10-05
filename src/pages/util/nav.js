@@ -1,12 +1,11 @@
-import React, {useState, useEffect, useMemo, useRef} from 'react';
-import { Route, Link, Routes, Redirect, withRouter, useLocation, useNavigate} from 'react-router-dom';
+import React, {useState, useEffect, useMemo} from 'react';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 import { useUserContext } from "../../UserProvider";
 
 const Nav = (props) => {
  
   const user = useUserContext();
-  const [nav, setNav] = useState(props);
-  const navigate = useNavigate();
+  const [nav, setNav] = useState(props);  
   const location = useLocation();
   const path = location.pathname;
   useMemo(() => {
@@ -31,7 +30,7 @@ const Nav = (props) => {
     {
       user && 
       <nav>
-        <h3>{user.name}</h3>
+        <h3>{user.email}</h3>
         <ul>        
           <li className={(path=="/home")?"active":""}>
             <Link to={"/home"}>
