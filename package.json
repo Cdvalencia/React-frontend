@@ -31,7 +31,8 @@
     "styled-components": "5.2.0",
     "sweetalert2": "^11.7.12",
     "sweetalert2-react-content": "^5.0.7",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "node-sass": "^4.14.1"
   },
   "devDependencies": {
     "node-sass": "^4.14.1"
