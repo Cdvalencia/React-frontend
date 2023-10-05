@@ -12,7 +12,6 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
 
-import "react-datepicker/dist/react-datepicker.css";
 import { MenuItem, Button, Box} from '@mui/material';
 import Swal from 'sweetalert2'
 
