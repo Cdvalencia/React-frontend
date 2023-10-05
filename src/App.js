@@ -3,14 +3,17 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import Home from './pages/home';
-import Usuarios from './pages/usuarios';
-import Posts from './pages/posts';
+import Books from './pages/books';
+import Login from './pages/login';
+import Logout from './pages/util/logout';
+
 
 import Nav from './pages/util/nav';
 import './styles/App.scss';
 
 import { UserProvider } from './UserProvider';
 import { DataProvider } from './DataProvider';
+import ProtectedRoute from "./pages/util/ProtectedRoute";
 
 function App() {
   return (
@@ -21,10 +24,26 @@ function App() {
             <Nav/>
             <section>
               <Routes>
-                <Route path="/" element={<Home />} />                
-                <Route path="/home" element={<Home />} />                
-                <Route path="/usuarios" element={<Usuarios />} />
-                <Route path="/posts" element={<Posts />} />                
+                  <Route path="/" element={
+                    <ProtectedRoute accessBy="non-authenticated">                      
+                      <Login />
+                    </ProtectedRoute>
+                  } />                
+                  <Route path="/home" element={
+                    <ProtectedRoute accessBy="authenticated">
+                      <Home />
+                    </ProtectedRoute>             
+                  } />   
+                  <Route path="/libros" element={
+                    <ProtectedRoute accessBy="authenticated">
+                      <Books />
+                    </ProtectedRoute>             
+                  } />                
+                  <Route path="/logout" element={
+                    <ProtectedRoute accessBy="authenticated">
+                      <Logout />
+                    </ProtectedRoute>             
+                  } />                
               </Routes>
             </section>
           </Router  >

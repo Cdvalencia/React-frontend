@@ -1,9 +1,10 @@
 import React, {useState, useEffect, useMemo, useRef} from 'react';
 import { Route, Link, Routes, Redirect, withRouter, useLocation, useNavigate} from 'react-router-dom';
+import { useUserContext } from "../../UserProvider";
 
 const Nav = (props) => {
-
-  // const dispatch = useDispatch();
+ 
+  const user = useUserContext();
   const [nav, setNav] = useState(props);
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,26 +27,31 @@ const Nav = (props) => {
 
 
   return (
-    <nav>
-      <ul>        
-        <li className={(path=="/home")?"active":""}>
-          <Link to={"/home"}>
-            Home
-          </Link>
-        </li>
-        <li className={(path=="/usuarios")?"active":""}>
-          <Link to={"/usuarios"}>
-            Usuarios
-          </Link>
-        </li>
-        <li className={(path=="/posts")?"active":""}>
-          <Link to={"/posts"}>
-            Posts
-          </Link>
-        </li>
-      </ul>
-    </nav>
-);
+    <>
+    {
+      user && 
+      <nav>
+        <h3>{user.name}</h3>
+        <ul>        
+          <li className={(path=="/home")?"active":""}>
+            <Link to={"/home"}>
+              Home
+            </Link>
+          </li>
+          <li className={(path=="/libros")?"active":""}>
+            <Link to={"/libros"}>
+              Libros
+            </Link>
+          </li>        
+            <li>
+                <Link to={"/logout"}>
+                  Cerrar Sesión
+                </Link>
+            </li>              
+        </ul>
+      </nav>
+    }
+  </>    
+  )
 }
-
 export default Nav;

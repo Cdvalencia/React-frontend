@@ -7,7 +7,15 @@ nav{
   -webkit-box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.2);
   -moz-box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.2);
   box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.2);
+  z-index: 11;
+  @include flex;
+  h3{
+    width: fit-content;
+    white-space: nowrap;
+    padding-left: 30px;
+  }
   ul{
+    width: 100%;
     @include flex;
     justify-content: flex-end;
     height: 100%;

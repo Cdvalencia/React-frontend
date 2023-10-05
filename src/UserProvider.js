@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 
 const userContext = React.createContext();
 const userToggleContext = React.createContext();
 const useUserLogOut = React.createContext();
-// import { useNavigate } from "react-router-dom";
 
 export function useUserContext() {
     return useContext(userContext);
@@ -15,8 +14,7 @@ export function useUserToggleContext() {
 
 export function UserProvider(props) {
 
-    const [user, setUser] = useState((localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).id)?JSON.parse(localStorage.getItem("user")):"");
-    // const navigate = useNavigate();
+    const [user, setUser] = useState((localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).id)?JSON.parse(localStorage.getItem("user")):"");    
 
     const isLogin = () => {
       return (localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).id);
@@ -29,20 +27,12 @@ export function UserProvider(props) {
 
     const logout = () => {
       localStorage.setItem("user","null");
-      setUser({});
+      setUser(null);
     }
-
-    useEffect(() => {
-      if(!(user && user.id)){
-        // navigate("/");
-      }
-      // setEditorHtml(props.editor)
-    },[user]);
-
     return (
         <userContext.Provider value={user}>
             <userToggleContext.Provider value={{
-              saveUser,
+              saveUser,              
               logout,
               isLogin
             }}>

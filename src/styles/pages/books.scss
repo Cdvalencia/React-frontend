@@ -1,0 +1,109 @@
+.books{
+  header{
+    position: relative;
+    z-index: 10;
+    margin-bottom: 10px;
+    padding: 0 2%;
+    h1{
+      margin: 20px 0;
+      font-size: 1.9em
+    }
+    &>section{
+      @include flex;
+      justify-content: flex-start;      
+      &>label{
+        margin-right: 10px
+      }
+      &>article{
+        position: relative;                
+        &>input{
+          height: 28px;
+          width: 300px;
+          padding-left: 10px
+        }
+        &>figure{
+          @include flex;
+          position: absolute;
+          right: 3px;
+          top: 3px;
+          color: white;
+          background-color: red;          
+          border-radius: 5px;
+          padding: 0 5px;          
+          height: 20px;
+          font-size: .9em;
+          cursor: pointer;          
+        }
+        &>aside{
+          position: absolute !important;
+          left: -40px;
+          top: 30px;
+          width: 300px;
+          padding: 25px;
+          -webkit-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
+          -moz-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
+          box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
+          background: white;          
+          &>figure{
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            color: white;
+            background-color: red;          
+            border-radius: 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;          
+          }
+        }
+      }
+    }
+    &>article{
+      @include flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+  }
+}
+
+.modal-book{
+  width: 80vw;  
+  &>form{
+    &>div{
+      @include flex;
+      margin: 10px 10px;
+      &>div{
+        width: 100%;
+        margin: 0 10px;
+        input{
+          width: 100%;
+          padding-left: 10px;
+          border-radius: 5px;
+          height: 30px;
+          border: 1px solid gray;
+        }
+        span{
+          font-size: .9em;
+          padding-left: 10px;
+          color: red;
+        }
+      }    
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px){
+  .books header > section{
+    @include flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    &>label{
+      width: 100%;
+    }
+    &>article{      
+      margin-top: 5px;
+    }
+  }
+}
+

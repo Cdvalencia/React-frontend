@@ -1,13 +1,16 @@
 import axios from 'axios';
 
-const http = axios.create();
+const http = axios.create(
+    {
+        withCredentials: true
+    }
+);
 let cont=0;
 
 /**
  * Interceptor for all requests
  */
-http.interceptors.request.use((config) => {
-    console.log(config);
+http.interceptors.request.use((config) => {    
     /**
      * Add your request interceptor logic here: setting headers, authorization etc.
      */
@@ -17,8 +20,9 @@ http.interceptors.request.use((config) => {
      // config.dataType= "json";
      // config.contentType= "application/json";
      config.headers={
+        ...config.headers,
        'Content-Type': "application/json",
-       'Accept': "application/json"
+       'Accept': "application/json"       
      }
 
       if(config.url.indexOf("login.php")==-1){

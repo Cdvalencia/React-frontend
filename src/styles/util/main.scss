@@ -100,7 +100,7 @@ input[type=radio]:checked{;
   }
 }
 
-input[type=checkbox]{
+input[type=checkbox]:not(.PrivateSwitchBase-input){
   width: 16px;
   height: 16px;
   position: relative;
@@ -123,7 +123,7 @@ input[type=checkbox]{
   }
 }
 
-input[type=checkbox]:checked{
+input[type=checkbox]:checked:not(.PrivateSwitchBase-input){
   width: 16px;
   height: 16px;
   position: relative;
@@ -201,6 +201,20 @@ input[type="file"]{
     font-size: 1rem;
 }
 
+.css-jsexje-MuiSwitch-thumb{  
+  top: 9px;
+}
+
+.swal2-container{
+  z-index: 1301;
+}
+
+.swal2-popup{
+  font-size: 15px;
+  .swal2-title{
+    font-size: 1.5em;
+  }
+}
 
 
 @media screen and (max-width: 1600px){}
