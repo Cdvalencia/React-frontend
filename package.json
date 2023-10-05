@@ -23,22 +23,20 @@
     "history": "^5.3.0",
     "material-react-table": "^1.15.0",
     "namor": "^1.1.2",
+    "node-sass": "^4.14.1",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "3.1.2",
+    "sass-loader": "^13.3.2",
     "styled-components": "5.2.0",
     "sweetalert2": "^11.7.12",
     "sweetalert2-react-content": "^5.0.7",
-    "typescript": "^5.2.2",
-    "node-sass": "^4.14.1"
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "node-sass": "^4.14.1"
-  },
-  "engines": {
-    "node": "16.14.0"
   },
   "browserslist": {
     "production": [
