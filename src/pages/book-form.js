@@ -13,8 +13,8 @@ const BookForm = (props) => {
     const [title, setTitle] = useState((!(props.book.title))?"Crear libro":"Editando libro - "+props.book.title);   
     const [date, setDate] = useState(null);     
     const [calendarVisible, setCalendarVisible] = useState(false);
-    const [currentDate, setCurrentDate] = useState("");
-              
+
+    const [validate, setValidate] = React.useState(false);
 
     useMemo(() => {      
         let validation={}
@@ -47,9 +47,8 @@ const BookForm = (props) => {
         setValidationBook({
             ...validationBook,
             ...validationBook2
-        });    
-        valid=true;                
-        if(valid){
+        });                         
+        if(valid || !validate){
             props.save(book);
         }else{
             Swal.fire('Todos los campos no están completos.', '', 'warning');
@@ -162,6 +161,14 @@ const BookForm = (props) => {
                     <div>
                         {book.id && <label htmlFor="id">id</label>}
                         {book.id && <input type="text" name="id" disabled value={book.id} placeholder="id" onChange={changeInput} />}
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label htmlFor="synopsis">Validar campos desde front end</label>
+                        <input type="checkbox" name="validar"  checked={validate} onChange={()=>{setValidate(!validate)}} />                        
+                    </div>
+                    <div>                        
                     </div>
                 </div>
             </form>  

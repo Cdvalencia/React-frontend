@@ -37,8 +37,8 @@ const Nav = (props) => {
               Home
             </Link>
           </li>
-          <li className={(path=="/libros")?"active":""}>
-            <Link to={"/libros"}>
+          <li className={(path=="/books")?"active":""}>
+            <Link to={"/books"}>
               Libros
             </Link>
           </li>        

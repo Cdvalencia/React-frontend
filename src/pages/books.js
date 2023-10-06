@@ -48,19 +48,6 @@ const Books = (props) => {
   const [openModal, setOpenModal] = useState(false);
 
   useMemo(() => {    
-    // const from = new Date('2020-01-02T00:00:00.000Z');
-    // const to = new Date();
-    // setDateRange([from, to]);    
-      
-    // http.post(`${API_URL}/logout`).then((result) => {
-    //   console.log(result);    
-    // }).catch((err) =>
-    //   console.log(err)
-    // ).finally(() =>
-    //   console.log()
-    // )
-
-    
   }, []);
   
   useEffect(() => {
@@ -163,8 +150,7 @@ const Books = (props) => {
     });
     setOpenModal(true);    
   }
-  const editBook= (book) => {
-    console.log('editBook', book); 
+  const editBook= (book) => {    
     setCurrentBook(book.original);
     setOpenModal(true);
     document.querySelector(".MuiBackdrop-root").click();

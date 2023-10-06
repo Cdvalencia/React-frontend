@@ -37,9 +37,7 @@ const Home = (props) => {
       console.log()
       )
     }
-    Swal.fire('Se han creado 40 Libros!', '', 'success');
-    
-    // ('Libro 40', 'Autor 40', 'Género 3', '2023-01-40', 'ISBN-40', 'Editorial 3', 300, 'Sinopsis 40', true);
+    Swal.fire('Se han creado 40 Libros!', '', 'success');        
   }
 
 

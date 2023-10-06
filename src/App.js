@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 
 import Home from './pages/home';
 import Books from './pages/books';
@@ -34,7 +34,7 @@ function App() {
                       <Home />
                     </ProtectedRoute>             
                   } />   
-                  <Route path="/libros" element={
+                  <Route path="/books" element={
                     <ProtectedRoute accessBy="authenticated">
                       <Books />
                     </ProtectedRoute>             
@@ -43,7 +43,8 @@ function App() {
                     <ProtectedRoute accessBy="authenticated">
                       <Logout />
                     </ProtectedRoute>             
-                  } />                
+                  } />  
+                  <Route path="*" element={<Navigate replace to="/home" />} />              
               </Routes>
             </section>
           </Router  >
