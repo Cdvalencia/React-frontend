@@ -26,6 +26,7 @@ http.interceptors.request.use((config) => {
        'Accept': "application/json"       
      }
 
+     // evitar el loading, en algunas pagina, si es necesario.
       if(config.url.indexOf("login.php")==-1){
         cont++;     
         document.getElementById("loading").style.display = 'flex';
