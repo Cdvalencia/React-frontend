@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Prueba Cosmos - Frontend",
   "main": "index.js",
-  "homepage": "http://cvalencia-cosmos-frontend.s3.us-east-1.amazonaws.com/",
+  "homepage": "https://main.d1j29lgo6wvoj3.amplifyapp.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && node scripts/postbuild.js",
