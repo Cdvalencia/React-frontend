@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Prueba Cosmos - Frontend",
   "main": "index.js",
-  "homepage": "https://www.fluxiilanguages.com/cosmos/frontend/",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && node scripts/postbuild.js",
