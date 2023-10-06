@@ -1,13 +1,19 @@
 import React, {useState, useEffect, useMemo, useRef} from 'react';
 import { Modal } from './util/modal';
 import Swal from 'sweetalert2'
+import { format, isValid} from 'date-fns'
+
+import { Calendar } from 'react-date-range';
 
 const BookForm = (props) => {
 
     // const dispatch = useDispatch();
     const [book, setBook] = useState(props.book);        
     const [validationBook, setValidationBook] = useState({});  
-    const [title, setTitle] = useState((!(props.book.title))?"Crear libro":"Editando libro - "+props.book.title);        
+    const [title, setTitle] = useState((!(props.book.title))?"Crear libro":"Editando libro - "+props.book.title);   
+    const [date, setDate] = useState(null);     
+    const [calendarVisible, setCalendarVisible] = useState(false);
+    const [currentDate, setCurrentDate] = useState("");
               
 
     useMemo(() => {      
@@ -16,8 +22,15 @@ const BookForm = (props) => {
             dirty: false,
             touched: false
         });        
-        setValidationBook(validation);  
+        setValidationBook(validation); 
+               
+        setDate((props.book.publication_date=="")?"":new Date(props.book.publication_date)); 
+        setBook({
+            ...book,
+            publication_date: (props.book.publication_date=="")?"": format(new Date(props.book.publication_date),"dd-MMM-yyyy")
+        });
     }, []);
+    
     
     const save = () => { 
         let valid=true;
@@ -34,7 +47,8 @@ const BookForm = (props) => {
         setValidationBook({
             ...validationBook,
             ...validationBook2
-        });                    
+        });    
+        valid=true;                
         if(valid){
             props.save(book);
         }else{
@@ -54,8 +68,19 @@ const BookForm = (props) => {
       }
     });
   }
-
-
+  function setDateHandle(date){
+    setBook({
+      ...book,
+      publication_date: format(new Date(date),"dd-MMM-yyyy")
+    });
+    setValidationBook({
+      ...validationBook,
+      publication_date: {
+        dirty: true
+      }
+    });
+    setCalendarVisible(false);
+  }
   return (
     <>
         <Modal closeModal={props.closeModal} titleModal={props.titleModal} save={ ev => save() }>
@@ -74,60 +99,68 @@ const BookForm = (props) => {
             <form action="">
                 <div>                  
                     <div>
-                        <label for="title">Titulo</label>
+                        <label htmlFor="title">Titulo</label>
                         <input type="text" name="title" value={book.title} placeholder="Titulo" onChange={changeInput} />
                         {validationBook.title && validationBook.title.dirty && book.title=="" && <span>El Titulo es requerido</span>}
                     </div>
                     <div>
-                        <label for="author">Autor</label>
+                        <label htmlFor="author">Autor</label>
                         <input type="text" name="author" value={book.author} placeholder="Autor" onChange={changeInput} />
                         {validationBook.author && validationBook.author.dirty && book.author=="" && <span>El Autor es requerido</span>}
                     </div>
                 </div>
                 <div>
                     <div>
-                        <label for="genre">Género</label>
+                        <label htmlFor="genre">Género</label>
                         <input type="text" name="genre" value={book.genre} placeholder="Género" onChange={changeInput} />
                         {validationBook.genre && validationBook.genre.dirty && book.genre=="" && <span>El Género es requerido</span>}
                     </div>
                     <div>
-                        <label for="amount">Cantidad</label>
+                        <label htmlFor="amount">Cantidad</label>
                         <input type="text" name="amount" value={book.amount} placeholder="Cantidad" onChange={changeInput} />
                         {validationBook.amount && validationBook.amount.dirty && book.amount=="" && <span>La Cantidad es requerido</span>}
                     </div>
                 </div>
                 <div>
                     <div>
-                        <label for="publication_date">Fecha de publicación</label>
-                        <input type="text" name="publication_date" value={book.publication_date} placeholder="Fecha de publicación" onChange={changeInput} />
+                        <label htmlFor="publication_date">Fecha de publicación</label>
+                        <input type="text" name="publication_date" value={book.publication_date} placeholder="Fecha de publicación" onFocus={()=>{setCalendarVisible(true)}} />
+                        {calendarVisible && 
+                            <aside>                                  
+                                <Calendar 
+                                    onChange={item => setDateHandle(item)}
+                                    date={date} 
+                                />
+                            </aside>                
+                        }    
                         {validationBook.publication_date && validationBook.publication_date.dirty && book.publication_date=="" && <span>La Fecha de publicación es requerido</span>}
                     </div>
                     <div>
-                        <label for="isbn">isbn</label>
+                        <label htmlFor="isbn">isbn</label>
                         <input type="text" name="isbn" value={book.isbn} placeholder="isbn" onChange={changeInput} />
                         {validationBook.isbn && validationBook.isbn.dirty && book.isbn=="" && <span>El isbn es requerido</span>}
                     </div>
                 </div>
                 <div>
                     <div>
-                        <label for="publisher">Publicado</label>
+                        <label htmlFor="publisher">Publicado</label>
                         <input type="text" name="publisher" value={book.publisher} placeholder="Publicado" onChange={changeInput} />
                         {validationBook.publisher && validationBook.publisher.dirty && book.publisher=="" && <span>Publicado es requerido</span>}
                     </div>
                     <div>
-                        <label for="pages">Páginas</label>
+                        <label htmlFor="pages">Páginas</label>
                         <input type="text" name="pages" value={book.pages} placeholder="Páginas" onChange={changeInput} />
                         {validationBook.pages && validationBook.pages.dirty && book.pages=="" && <span>El número de Páginas es requerido</span>}
                     </div>
                 </div>
                 <div>
                     <div>
-                        <label for="synopsis">Sinopsis</label>
+                        <label htmlFor="synopsis">Sinopsis</label>
                         <input type="text" name="synopsis" value={book.synopsis} placeholder="Sinopsis" onChange={changeInput} />
                         {validationBook.synopsis && validationBook.synopsis.dirty && book.synopsis=="" && <span>La Sinopsis es requerido</span>}
                     </div>
                     <div>
-                        {book.id && <label for="id">id</label>}
+                        {book.id && <label htmlFor="id">id</label>}
                         {book.id && <input type="text" name="id" disabled value={book.id} placeholder="id" onChange={changeInput} />}
                     </div>
                 </div>

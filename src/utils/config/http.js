@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const http = axios.create(
     {
@@ -33,6 +34,9 @@ http.interceptors.request.use((config) => {
     return config;
 }, (error) => {
 
+    console.log(error);
+    
+
     /**
      * Add your error handlers here
      */
@@ -56,6 +60,7 @@ http.interceptors.response.use((response) => {
    }
     return response;
 }, (error) => {
+    console.log(error);    
     cont--;
     if(cont==0){
      document.getElementById("loading").style.display = 'none';
@@ -63,8 +68,8 @@ http.interceptors.response.use((response) => {
     /**
      * Add logic for any error from backend
      */
-
+    Swal.fire(error.response.data.message, '', 'error')
     return Promise.reject(error);
-});
+})
 
 export default http;

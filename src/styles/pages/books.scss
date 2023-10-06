@@ -37,8 +37,7 @@
         &>aside{
           position: absolute !important;
           left: -40px;
-          top: 30px;
-          width: 300px;
+          top: 30px;          
           padding: 25px;
           -webkit-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
           -moz-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
@@ -68,6 +67,7 @@
 
 .modal-book{
   width: 80vw;  
+  overflow: visible !important;
   &>form{
     &>div{
       @include flex;
@@ -75,17 +75,32 @@
       &>div{
         width: 100%;
         margin: 0 10px;
-        input{
+        position: relative;
+        &>input{
           width: 100%;
           padding-left: 10px;
           border-radius: 5px;
           height: 30px;
           border: 1px solid gray;
         }
-        span{
+        &>span{
           font-size: .9em;
           padding-left: 10px;
           color: red;
+        }
+        &>aside{
+          position: absolute !important;
+          @include flex;
+          left: 0;
+          right: 0;
+          margin: auto;
+          top: 50px;          
+          padding: 25px;
+          -webkit-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
+          -moz-box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
+          box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.19);
+          background: white;     
+          z-index: 1;               
         }
       }    
     }

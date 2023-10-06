@@ -238,33 +238,33 @@ const Books = (props) => {
     setOpenModal(false);
   }
   const saveModal = (book) => {
-    setOpenModal(false);
     if(book.id){
       http.put(`${API_URL}/books/${book.id}`, book).then((result) => {          
         if(result.status==200){
+          setOpenModal(false);
           Swal.fire('El Libro ha sido Actualizado!', '', 'success');
           setRecallBooks(!recallBooks);
         }else{
           Swal.fire('Ha ocurrido un error, intenta nuevamente!', '', 'error')
         }
       }).catch((err) =>
-        console.log(err)
+      console.log(err)
       ).finally(() =>
-        console.log()
+      console.log()
       )
     }else{
-      http.post(`${API_URL}/books`, book).then((result) => {          
+      http.post(`${API_URL}/books`, book).then((result) => { 
+        console.log(result);                 
         if(result.status==200){
+          setOpenModal(false);
           Swal.fire('El Libro ha sido creado!', '', 'success');
           setRecallBooks(!recallBooks);
         }else{
           Swal.fire('Ha ocurrido un error, intenta nuevamente!', '', 'error')
         }
-      }).catch((err) =>
-        console.log(err)
-      ).finally(() =>
-        console.log()
-      )
+      }).catch((err) =>{
+        console.log(err);                        
+      })
     }
   } 
   

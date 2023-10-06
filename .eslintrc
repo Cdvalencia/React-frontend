@@ -1,7 +1,12 @@
 {    
-  "env": {
-    "browser": true
-  },    
-  "rules": {        
-  }
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "cordova": true
+    },
+    "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "no-console": "off"
+      }
 }
