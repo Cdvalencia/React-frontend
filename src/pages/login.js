@@ -30,6 +30,15 @@ const Login = (props) => {
       console.log()
     )
   }
+  function login2(user){
+    http.get(`${API_URL}/books`).then((result) => {
+      console.log(result);                    
+    }).catch((err) =>
+      console.log(err)
+    ).finally(() =>
+      console.log()
+    )
+  }
   
   return (
     <section className="login">
@@ -38,6 +47,7 @@ const Login = (props) => {
         <h2 onClick={()=>{login("user1")}}>Iniciar como User 1</h2>      
         <h2 onClick={()=>{login("user2")}}>Iniciar como User 2</h2>      
         <h2 onClick={()=>{login("user3")}}>Iniciar como User 3</h2>     
+        <h2 onClick={()=>{login2("user3")}}>Books</h2>     
       </section>
     </section>
 );
