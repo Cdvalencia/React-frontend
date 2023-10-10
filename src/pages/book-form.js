@@ -47,7 +47,9 @@ const BookForm = (props) => {
         setValidationBook({
             ...validationBook,
             ...validationBook2
-        });                         
+        });   
+        console.log(book);
+                              
         if(valid || !validate){
             props.save(book);
         }else{
@@ -68,6 +70,9 @@ const BookForm = (props) => {
     });
   }
   function setDateHandle(date){
+    console.log(date);
+    console.log(format(new Date(date),"dd-MMM-yyyy"));
+    
     setBook({
       ...book,
       publication_date: format(new Date(date),"dd-MMM-yyyy")

@@ -224,7 +224,9 @@ const Books = (props) => {
     setOpenModal(false);
   }
   const saveModal = (book) => {
+    book.publication_date=new Date(book.publication_date);
     if(book.id){
+      console.log(book);      
       http.put(`${API_URL}/books/${book.id}`, book).then((result) => {          
         if(result.status==200){
           setOpenModal(false);
@@ -239,9 +241,10 @@ const Books = (props) => {
       console.log()
       )
     }else{
+      console.log(book);      
       http.post(`${API_URL}/books`, book).then((result) => { 
         console.log(result);                 
-        if(result.status==200){
+        if(result.data && result.data.id){
           setOpenModal(false);
           Swal.fire('El Libro ha sido creado!', '', 'success');
           setRecallBooks(!recallBooks);
